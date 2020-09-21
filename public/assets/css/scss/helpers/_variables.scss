@@ -1,0 +1,303 @@
+// Base variables
+$base-px: 16;
+$base-rem: 1;
+
+// Typography
+$font-family-montserrat:          'Montserrat', sans-serif; // Default: For body
+$font-family-merriweather:        'Merriweather', serif;    // Alt: For titles
+$font-size-default:               $base-rem + rem;          // 16px
+$line-height-default:             1.5;
+$line-height-alt:                 1.8;
+$letter-spacing-default:          .01rem;
+$letter-spacing-alt:              .02rem;
+$letter-spacing-negative-default: -0.004rem;
+$letter-spacing-negative-alt:     -0.06rem;
+
+// Grid
+// Reference: https://getbootstrap.com/docs/4.5/layout/grid/
+// ---------------------------------------------------------------------------------------------------------------------
+// |                        Extra small|<576px   Small|>=576px   Medium|>=768px   Large|>=992px   Extra large|>=1200px |
+// | Max container width:   None(auto)           540px           720px            960px           1140px               |
+// | Class prefix:          .col-                .col-sm-        .col-md-         .col-lg-        .col-xl-             |
+// | # of columns:          12                                                                                         |
+// | Gutter width:          30px (15px on each side of a column)                                                       |
+// | Nestable:              Yes                                                                                        |
+// | Column ordering:       Yes                                                                                        |
+// ---------------------------------------------------------------------------------------------------------------------
+$min-width-sm:            576px;
+$min-width-md:            768px;
+$min-width-lg:            992px;
+$min-width-xl:            1200px;
+
+$max-width-sm:            540px;
+$max-width-md:            720px;
+$max-width-lg:            960px;
+$max-width-xl:            1140px;
+
+// Weights
+$font-weight-default-300: 300;
+$font-weight-default-400: 400;
+$font-weight-default-500: 500;
+$font-weight-default-600: 600;
+$font-weight-default-700: 700;
+$font-weight-alt-300:     300;
+$font-weight-alt-400:     400;
+$font-weight-alt-700:     700;
+
+// Sizes
+$size-0:            0;
+
+$size-px-value-4:   4;
+$size-px-value-8:   8;
+$size-px-value-10:  10;
+$size-px-value-12:  12;
+$size-px-value-14:  14;
+$size-px-value-16:  16;
+$size-px-value-18:  18;
+$size-px-value-20:  20;
+$size-px-value-22:  22;
+$size-px-value-24:  24;
+$size-px-value-28:  28;
+$size-px-value-32:  32;
+$size-px-value-40:  40;
+$size-px-value-48:  48;
+$size-px-value-64:  64;
+$size-px-value-95:  95;
+
+$size-rem-value-4:  $size-px-value-4  / $base-px; // .25rem
+$size-rem-value-8:  $size-px-value-8  / $base-px; // .5rem
+$size-rem-value-10: $size-px-value-10 / $base-px; // .625rem
+$size-rem-value-12: $size-px-value-12 / $base-px; // .75rem
+$size-rem-value-14: $size-px-value-14 / $base-px; // .875rem
+$size-rem-value-16: $size-px-value-16 / $base-px; // 1rem
+$size-rem-value-18: $size-px-value-18 / $base-px; // 1.125rem
+$size-rem-value-20: $size-px-value-20 / $base-px; // 1.25rem
+$size-rem-value-22: $size-px-value-22 / $base-px; // 1.375rem
+$size-rem-value-24: $size-px-value-24 / $base-px; // 1.5rem
+$size-rem-value-28: $size-px-value-28 / $base-px; // 1.75rem
+$size-rem-value-32: $size-px-value-32 / $base-px; // 2rem
+$size-rem-value-40: $size-px-value-40 / $base-px; // 2.5rem
+$size-rem-value-48: $size-px-value-48 / $base-px; // 3rem
+$size-rem-value-64: $size-px-value-64 / $base-px; // 4rem
+$size-rem-value-95: $size-px-value-95 / $base-px; // 5.9375rem
+
+$size-rem-4:        $size-rem-value-4  + rem;
+$size-rem-8:        $size-rem-value-8  + rem;
+$size-rem-10:       $size-rem-value-10 + rem;
+$size-rem-12:       $size-rem-value-12 + rem;
+$size-rem-14:       $size-rem-value-14 + rem;
+$size-rem-16:       $size-rem-value-16 + rem;
+$size-rem-18:       $size-rem-value-18 + rem;
+$size-rem-20:       $size-rem-value-20 + rem;
+$size-rem-22:       $size-rem-value-22 + rem;
+$size-rem-24:       $size-rem-value-24 + rem;
+$size-rem-32:       $size-rem-value-32 + rem;
+$size-rem-40:       $size-rem-value-40 + rem;
+$size-rem-48:       $size-rem-value-48 + rem;
+$size-rem-64:       $size-rem-value-64 + rem;
+$size-rem-95:       $size-rem-value-95 + rem;
+
+$size-vh-100:       100vh;
+
+// Colors
+// Default
+$color-font-default:          rgba(0,   0,   0,   .84);
+$color-font-alt:              rgba(0,   0,   0,   .54);
+
+$color-background-default:    rgba(0,   0,   0,   .84);
+$color-background-alt:        rgba(0,   0,   0,   .54);
+
+// Whites
+$color-whitest-lightest-1:    rgba(255, 255, 255, 1);
+$color-whitest-lighter-2:     rgba(255, 255, 255, .95);
+$color-whitest-light-3:       rgba(255, 255, 255, .90);
+$color-whitest-neutral-4:     rgba(255, 255, 255, .85);
+$color-whitest-dark-5:        rgba(255, 255, 255, .80);
+$color-whitest-darker-6:      rgba(255, 255, 255, .75);
+$color-whitest-darkest-7:     rgba(255, 255, 255, .70);
+
+$color-whiter-lightest-1:     rgba(255, 255, 255, .65);
+$color-whiter-lighter-2:      rgba(255, 255, 255, .60);
+$color-whiter-light-3:        rgba(255, 255, 255, .55);
+$color-whiter-neutral-4:      rgba(255, 255, 255, .50);
+$color-whiter-dark-5:         rgba(255, 255, 255, .45);
+$color-whiter-darker-6:       rgba(255, 255, 255, .40);
+$color-whiter-darkest-7:      rgba(255, 255, 255, .35);
+
+$color-white-lightest-1:      rgba(255, 255, 255, .30);
+$color-white-lighter-2:       rgba(255, 255, 255, .25);
+$color-white-light-3:         rgba(255, 255, 255, .20);
+$color-white-neutral-4:       rgba(255, 255, 255, .15);
+$color-white-dark-5:          rgba(255, 255, 255, .10);
+$color-white-darker-6:        rgba(255, 255, 255, .05);
+$color-white-darkest-7:       rgba(255, 255, 255, 0);
+
+// Blacks
+$color-blackest-lightest-1:   rgba(0,   0,   0,  1);
+$color-blackest-lighter-2:    rgba(0,   0,   0,  .95);
+$color-blackest-light-3:      rgba(0,   0,   0,  .90);
+$color-blackest-neutral-4:    rgba(0,   0,   0,  .85);
+$color-blackest-dark-5:       rgba(0,   0,   0,  .80);
+$color-blackest-darker-6:     rgba(0,   0,   0,  .75);
+$color-blackest-darkest-7:    rgba(0,   0,   0,  .70);
+
+$color-blacker-lightest-1:    rgba(0,   0,   0,  .65);
+$color-blacker-lighter-2:     rgba(0,   0,   0,  .60);
+$color-blacker-light-3:       rgba(0,   0,   0,  .55);
+$color-blacker-neutral-4:     rgba(0,   0,   0,  .50);
+$color-blacker-dark-5:        rgba(0,   0,   0,  .45);
+$color-blacker-darker-6:      rgba(0,   0,   0,  .40);
+$color-blacker-darkest-7:     rgba(0,   0,   0,  .35);
+
+$color-black-lightest-1:      rgba(0,   0,   0,  .30);
+$color-black-lighter-2:       rgba(0,   0,   0,  .25);
+$color-black-light-3:         rgba(0,   0,   0,  .20);
+$color-black-neutral-4:       rgba(0,   0,   0,  .15);
+$color-black-dark-5:          rgba(0,   0,   0,  .10);
+$color-black-darker-6:        rgba(0,   0,   0,  .05);
+$color-black-darkest-7:       rgba(0,   0,   0,  0);
+
+// Custom whites and blacks
+$color-black-alpha-002:       rgba(0,   0,   0,  .02);
+$color-black-alpha-006:       rgba(0,   0,   0,  .06);
+
+// Custom other
+$color-custom-grey-1:         rgba(250, 250, 250, 1); // #fafafa
+$color-custom-grey-2:         rgba(230, 230, 230, 1); // #e6e6e6
+$color-custom-grey-3:         rgba(153, 153, 153, 1); // #999999
+
+// Main
+$color-main-red:              rgba(247, 136, 136, 1); // #f78888
+$color-main-yellow:           rgba(243, 210, 80,  1); // #f3d250
+$color-main-grey:             rgba(236, 236, 236, 1); // #ececec
+$color-main-light-blue:       rgba(144, 204, 244, 1); // #90ccf4
+$color-main-blue:             rgba(93,  162, 213, 1); // #5da2d5
+
+$color-main-red-hover:        rgba(247, 136, 136, .9); // #f78888
+$color-main-yellow-hover:     rgba(243, 210, 80,  .9); // #f3d250
+$color-main-grey-hover:       rgba(236, 236, 236, .9); // #ececec
+$color-main-light-blue-hover: rgba(144, 204, 244, .9); // #90ccf4
+$color-main-blue-hover:       rgba(93,  162, 213, .9); // #5da2d5
+
+// Box shadows - not included in all the other colors, functions etc.
+$color-box-shadow-default:    rgba(0,   0,   0,   .84);
+$color-box-shadow-alt:        rgba(0,   0,   0,   .54);
+
+$color-box-shadow-lighter:    rgba(0,   0,   0,   .05);
+$color-box-shadow-light:      rgba(0,   0,   0,   .1);
+
+// Custom box shadows
+$color-box-shadow-alpha-004:  rgba(0,   0,   0,   .04);
+
+// Borders
+$border-size-mini:   1;
+$border-size-small:  2;
+$border-size-medium: 4;
+$border-size-big:    6;
+
+// Aspect ratios
+$aspect-ratio-16-9: 56.25%;
+
+// Bootstrap colors (background button colors)
+$color-bs-primary:   rgba(0,   123, 255, 1); // #007bff
+$color-bs-secondary: rgba(108, 117, 125, 1); // #6c757d
+$color-bs-success:   rgba(33,  136, 56,  1); // #218838
+$color-bs-danger:    rgba(220, 53,  69,  1); // #dc3545
+$color-bs-warning:   rgba(224, 168, 0,   1); // #e0a800
+$color-bs-info:      rgba(19,  132, 150, 1); // #138496
+$color-bs-light:     rgba(226, 230, 234, 1); // #e2e6ea
+$color-bs-dark:      rgba(52,  58,  64,  1); // #343a40
+
+// Transitions
+$transition-properties: (
+  'background-color',
+);
+
+$transition-durations: (
+  'slow':   .75s,
+  'normal': .50s,
+  'fast':   .25s,
+);
+
+/**
+ * Transition timing functions
+ * ease, linear, ease-in, ease-out, ease-in-out,
+ * step-start, step-end, steps(in, start|end), cubic-bezier(n, n, n, n),
+ * initial, inherit
+ */
+$transition-timing-functions: (
+  'ease',
+  'linear',
+  'ease-in',
+  'ease-out',
+  'ease-in-out',
+);
+
+$transition-delays: (
+  'none':   'null',
+  'slow':   .75s,
+  'normal': .50s,
+  'fast':   .25s,
+);
+
+// Cursors
+$cursor-properties: (
+  'pointer',
+);
+
+// Images
+$images-pages-about-path:                      '/assets/images/pages/about';
+$images-pages-topics-path:                     '/assets/images/pages/topics';
+
+$images-pages-topics-articles-path:            $images-pages-topics-path + '/articles';
+$images-pages-topics-videos-path:              $images-pages-topics-path + '/videos';
+
+$images: (
+  // Test images
+  image-test-40x40:                            ('/assets/images/test/40x40.jpg'),
+  image-test-200x200:                          ('/assets/images/test/200x200.jpg'),
+  image-test-400x400:                          ('/assets/images/test/400x400.jpg'),
+  image-test-1280x720:                         ('/assets/images/test/1280x720.jpg'),
+
+  // Default images
+  image-user-default-avatar:                   ('/assets/images/default/user/avatar.jpg'),
+
+  image-post-default-55x55:                    ('/assets/images/default/post/55x55.jpg'),
+  image-post-default-125x125:                  ('/assets/images/default/post/125x125.jpg'),
+  image-post-default-150x150:                  ('/assets/images/default/post/150x150.jpg'),
+  image-post-default-200x200:                  ('/assets/images/default/post/200x200.jpg'),
+  image-post-default-350x240:                  ('/assets/images/default/post/350x240.jpg'),
+  image-post-default-540x200:                  ('/assets/images/default/post/540x200.jpg'),
+  image-post-default-690x460:                  ('/assets/images/default/post/690x460.jpg'),
+  image-post-default-730x400:                  ('/assets/images/default/post/730x400.jpg'),
+  image-post-default-1280x720:                 ('/assets/images/default/post/1280x720.jpg'),
+
+  // Security - Login
+  image-login-default-1920x1080:               ('/assets/images/security/login/default.jpg'),
+
+  // About
+  image-about-hero:                            ($images-pages-about-path + '/hero/default.jpg'),
+  image-about-content-1:                       ($images-pages-about-path + '/content/1.jpg'),
+
+  // Topics - Articles
+  image-topics-articles-books:                 ($images-pages-topics-articles-path + '/books/default.jpg'),
+  image-topics-articles-education:             ($images-pages-topics-articles-path + '/education/default.jpg'),
+  image-topics-articles-entrepreneurship:      ($images-pages-topics-articles-path + '/entrepreneurship/default.jpg'),
+  image-topics-articles-exclusive:             ($images-pages-topics-articles-path + '/exclusive/default.jpg'),
+  image-topics-articles-finance:               ($images-pages-topics-articles-path + '/finance/default.jpg'),
+  image-topics-articles-infographics:          ($images-pages-topics-articles-path + '/infographics/default.jpg'),
+  image-topics-articles-inspiring-stories:     ($images-pages-topics-articles-path + '/inspiring-stories/default.jpg'),
+  image-topics-articles-lessons:               ($images-pages-topics-articles-path + '/lessons/default.jpg'),
+  image-topics-articles-life:                  ($images-pages-topics-articles-path + '/life/default.jpg'),
+  image-topics-articles-motivation:            ($images-pages-topics-articles-path + '/motivation/default.jpg'),
+  image-topics-articles-quotes:                ($images-pages-topics-articles-path + '/quotes/default.jpg'),
+  image-topics-articles-relationships:         ($images-pages-topics-articles-path + '/relationships/default.jpg'),
+  image-topics-articles-self-improvement:      ($images-pages-topics-articles-path + '/self-improvement/default.jpg'),
+
+  // Topics - Videos
+  image-topics-videos-inspirational-stories:   ($images-pages-topics-videos-path + '/inspirational-stories/default.jpg'),
+  image-topics-videos-motivational-videos:     ($images-pages-topics-videos-path + '/motivational-videos/default.jpg'),
+  image-topics-videos-movie-scenes:            ($images-pages-topics-videos-path + '/movie-scenes/default.jpg'),
+  image-topics-videos-quotes:                  ($images-pages-topics-videos-path + '/quotes/default.jpg'),
+  image-topics-videos-speeches-interviews:     ($images-pages-topics-videos-path + '/speeches-and-interviews/default.jpg'),
+);

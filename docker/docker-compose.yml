@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  php:
+    build:
+      context: ./bin/php
+    container_name: 'php-${PROJECT_NAME}'
+    restart: 'always'
+    links:
+      - mysql
+    volumes:
+      - ${DOCUMENT_ROOT}:/var/www/html:cached
+      - ${PROJECT_LOG_DIR}:/var/www/html/docker/logs/${PROJECT_NAME}
+      - ${PHP_INI}:/usr/local/etc/php/php.ini
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+      DB_CONNECTION: ${MYSQL_HOST}
+      DB_HOST: ${MYSQL_HOST}
+      DB_PORT: ${MYSQL_PORT_INTERNAL}
+      DB_DATABASE: ${MYSQL_NAME}
+      DB_USERNAME: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+  nginx:
+    build:
+      context: ./bin/nginx
+    container_name: 'nginx-${PROJECT_NAME}'
+    restart: 'always'
+    ports:
+      - ${PORT_HTTP_EXTERNAL}:80
+      - ${PORT_SSL_EXTERNAL}:443
+    volumes:
+      - ${DOCUMENT_ROOT}:/var/www/html:cached
+      - ${PWD}${NGINX_CONF}:/etc/nginx/nginx.conf
+      - ${NGINX_SITES_DIR}:/etc/nginx/sites-available
+      - ${NGINX_CONFD_DIR}:/etc/nginx/conf.d
+      - ${NGINX_LOGS_DIR}:/var/log/nginx
+    links:
+      - php
+  mysql:
+    build:
+      context: ./bin/mysql
+    container_name: 'mysql-${PROJECT_NAME}'
+    restart: 'always'
+    ports:
+      - ${MYSQL_PORT_EXTERNAL}:3306
+    volumes:
+      - ${MYSQL_DATA_DIR}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR}:/var/log/mysql
+      - ${MYSQL_CONF}:/etc/mysql/conf.d/mysql.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}

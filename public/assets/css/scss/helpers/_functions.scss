@@ -1,0 +1,972 @@
+// Variables for functions
+$colors-array-fonts: (
+  'default': $color-font-default,
+  'alt': $color-font-alt,
+);
+
+$colors-array-mains: (
+  'red': $color-main-red,
+  'yellow': $color-main-yellow,
+  'grey': $color-main-grey,
+  'light-blue': $color-main-light-blue,
+  'blue': $color-main-blue,
+);
+
+$colors-array-whites: (
+  'whitest-lightest-1': $color-whitest-lightest-1,
+  'whitest-lighter-2': $color-whitest-lighter-2,
+  'whitest-light-3': $color-whitest-light-3,
+  'whitest-neutral-4': $color-whitest-neutral-4,
+  'whitest-dark-5': $color-whitest-dark-5,
+  'whitest-darker-6': $color-whitest-darker-6,
+  'whitest-darkest-7': $color-whitest-darkest-7,
+
+  'whiter-lightest-1': $color-whiter-lightest-1,
+  'whiter-lighter-2': $color-whiter-lighter-2,
+  'whiter-light-3': $color-whiter-light-3,
+  'whiter-neutral-4': $color-whiter-neutral-4,
+  'whiter-dark-5': $color-whiter-dark-5,
+  'whiter-darker-6': $color-whiter-darker-6,
+  'whiter-darkest-7': $color-whiter-darkest-7,
+
+  'white-lightest-1': $color-white-lightest-1,
+  'white-lighter-2': $color-white-lighter-2,
+  'white-light-3': $color-white-light-3,
+  'white-neutral-4': $color-white-neutral-4,
+  'white-dark-5': $color-white-dark-5,
+  'white-darker-6': $color-white-darker-6,
+  'white-darkest-7': $color-white-darkest-7,
+);
+
+$colors-array-blacks: (
+  'blackest-lightest-1': $color-blackest-lightest-1,
+  'blackest-lighter-2': $color-blackest-lighter-2,
+  'blackest-light-3': $color-blackest-light-3,
+  'blackest-neutral-4': $color-blackest-neutral-4,
+  'blackest-dark-5': $color-blackest-dark-5,
+  'blackest-darker-6': $color-blackest-darker-6,
+  'blackest-darkest-7': $color-blackest-darkest-7,
+
+  'blacker-lightest-1': $color-blacker-lightest-1,
+  'blacker-lighter-2': $color-blacker-lighter-2,
+  'blacker-light-3': $color-blacker-light-3,
+  'blacker-neutral-4': $color-blacker-neutral-4,
+  'blacker-dark-5': $color-blacker-dark-5,
+  'blacker-darker-6': $color-blacker-darker-6,
+  'blacker-darkest-7': $color-blacker-darkest-7,
+
+  'black-lightest-1': $color-black-lightest-1,
+  'black-lighter-2': $color-black-lighter-2,
+  'black-light-3': $color-black-light-3,
+  'black-neutral-4': $color-black-neutral-4,
+  'black-dark-5': $color-black-dark-5,
+  'black-darker-6': $color-black-darker-6,
+  'black-darkest-7': $color-black-darkest-7,
+);
+
+$colors-array-customs: (
+  'black-alpha-002': $color-black-alpha-002,
+  'black-alpha-006': $color-black-alpha-006,
+  'custom-grey-1': $color-custom-grey-1,
+  'custom-grey-2': $color-custom-grey-2,
+  'custom-grey-3': $color-custom-grey-3,
+);
+
+// Functions
+@function theme-colors($key) {
+  @return map_get($theme-colors, $key);
+}
+
+/**
+ * #debugRgbaMorph {
+ *   @debug rgbaMorph(rgba(255, 255, 255));
+ * }
+ *
+ * @see https://stackoverflow.com/questions/12228548/finding-equivalent-color-with-opacity#answer-38265284
+ *
+ * @see https://graphicdesign.stackexchange.com/questions/2770/formula-for-finding-out-the-result-of-a-color-after-applying-x-opacity-to-it/answer-2771
+ * @see https://graphicdesign.stackexchange.com/questions/2770/formula-for-finding-out-the-result-of-a-color-after-applying-x-opacity-to-it/answer-2783
+ */
+@function rgbaMorph($color) {
+  $r1: red($color);
+  $g1: green($color);
+  $b1: blue($color);
+
+  $r: 100 - (($r1 * 100) / 255);
+  $g: 100 - (($g1 * 100) / 255);
+  $b: 100 - (($b1 * 100) / 255);
+
+  $alpha: (($r + $g + $b) / 3) / 100;
+
+  @return $alpha;
+}
+
+#rgbaMorphDebug {}
+
+// Operations
+
+/**
+ * fs: font size
+ * Recommended Font Sizes: 8, 16, 24, 32, 48, 64, 95 in pixels
+ *
+ * 1rem = 16px
+ * 1.5rem = 24px
+ * 2rem = 32px
+ * 3rem = 48px
+ * 4rem = 64px
+ * 5.9375rem = 95px
+ *
+ * Custom Font Sizes: 8, 10, 12, 14, 20, 28 in pixels
+ *
+ * 0.5rem = 8px
+ * 0.625rem = 10px
+ * 0.75rem = 12px
+ * 0.875rem = 14px
+ * 1.125rem = 18px
+ * 1.25rem = 20px
+ * 1.375rem = 22px
+ * 1.75rem = 28px
+ * 2.5rem = 40px
+ */
+$sizes:
+  $size-0,
+  $size-rem-value-8,
+  $size-rem-value-10,
+  $size-rem-value-12,
+  $size-rem-value-14,
+  $size-rem-value-16,
+  $size-rem-value-18,
+  $size-rem-value-20,
+  $size-rem-value-22,
+  $size-rem-value-24,
+  $size-rem-value-28,
+  $size-rem-value-32,
+  $size-rem-value-40,
+  $size-rem-value-48,
+  $size-rem-value-64,
+  $size-rem-value-95;
+@each $size in $sizes {
+  //$key: index($sizes, $size);
+  .fs-#{$size * $base-px} {
+    font-size: #{$size}rem;
+  }
+}
+
+/**
+ * Gives more space between list elements
+ *
+ * 1rem = 16px
+ * 1.5rem = 24px
+ * 2rem = 32px
+ * 3rem = 48px
+ */
+$sizes: $size-rem-value-16, $size-rem-value-24, $size-rem-value-32, $size-rem-value-48;
+@each $size in $sizes {
+  ul.list-unstyled.list-inline.list-inline-items-space-#{$size * $base-px} > li:not(:last-child) {
+    margin-right: #{$size}rem;
+  }
+}
+
+/**
+ * Creates positive and negative margins in pixels
+ */
+$marginsAndPaddings: (
+  orientation: ('top', 'right', 'bottom', 'left'),
+  size: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 30, 35, 40, 45, 50),
+);
+
+@each $size in map-get($marginsAndPaddings, 'size') {
+  .mp-#{$size} {
+    margin: #{$size}px;
+  }
+
+  .mn-#{$size} {
+    margin: #{$size}px;
+  }
+}
+
+@each $orientation in map-get($marginsAndPaddings, 'orientation') {
+  @each $size in map-get($marginsAndPaddings, 'size') {
+    .m#{str-slice($orientation, 1, 1)}p-#{$size} {
+      margin-#{$orientation}: #{$size}px;
+    }
+
+    .m#{str-slice($orientation, 1, 1)}n-#{$size} {
+      margin-#{$orientation}: -#{$size}px;
+    }
+  }
+}
+
+/**
+ * Creates positive paddings in pixels
+ */
+@each $size in map-get($marginsAndPaddings, 'size') {
+  .pp-#{$size} {
+    padding: #{$size}px;
+  }
+}
+
+@each $orientation in map-get($marginsAndPaddings, 'orientation') {
+  @each $size in map-get($marginsAndPaddings, 'size') {
+    .p#{str-slice($orientation, 1, 1)}p-#{$size} {
+      padding-#{$orientation}: #{$size}px;
+    }
+  }
+}
+
+/**
+ * Creates positive and negative xy margins in pixels and positive xy paddings in pixels
+ */
+@each $size in map-get($marginsAndPaddings, 'size') {
+  .pxp-#{$size} {
+    padding-left: #{$size}px;
+    padding-right: #{$size}px;
+  }
+
+  .pyp-#{$size} {
+    padding-top: #{$size}px;
+    padding-bottom: #{$size}px;
+  }
+
+  .mxp-#{$size} {
+    margin-left: #{$size}px;
+    margin-right: #{$size}px;
+  }
+
+  .myp-#{$size} {
+    margin-top: #{$size}px;
+    margin-bottom: #{$size}px;
+  }
+
+  .mxn-#{$size} {
+    margin-left: -#{$size}px;
+    margin-right: -#{$size}px;
+  }
+
+  .myn-#{$size} {
+    margin-top: -#{$size}px;
+    margin-bottom: -#{$size}px;
+  }
+}
+
+/**
+ * Generate position top, right, bottom, left classes based on rem like margins and paddings bootstrap classes
+ *
+ * pos-t: position top
+ * pos-r: position right
+ * pos-b: position bottom
+ * pos-l: position left
+ *
+ * 0rem = 0px
+ * 0.25rem = 4px
+ * 0.5rem = 8px
+ * 1rem = 16px
+ * 1.5rem = 24px
+ * 3rem = 48px
+ */
+$sizes: 0, $size-rem-value-4, $size-rem-value-8, $size-rem-value-16, $size-rem-value-24, $size-rem-value-48;
+@each $size in $sizes {
+  $key: index($sizes, $size) - 1;
+  .pos-t-#{$key} {
+    top: #{$size}rem;
+  }
+
+  .pos-r-#{$key} {
+    right: #{$size}rem;
+  }
+
+  .pos-b-#{$key} {
+    bottom: #{$size}rem;
+  }
+
+  .pos-l-#{$key} {
+    left: #{$size}rem;
+  }
+}
+
+
+/**
+ * Generate position top, right, bottom, left classes by percentage
+ *
+ * posp-t: position percent top
+ * posp-r: position percent right
+ * posp-b: position percent bottom
+ * posp-l: position percent left
+ */
+@for $i from 1 through 20 {
+  $percent: ($i * 5) / 100;
+  $percent-class: $percent * 100;
+
+  .posp-t-#{$percent-class} {
+    top: percentage($percent);
+  }
+
+  .posp-r-#{$percent-class} {
+    right: percentage($percent);
+  }
+
+  .posp-b-#{$percent-class} {
+    bottom: percentage($percent);
+  }
+
+  .posp-l-#{$percent-class} {
+    left: percentage($percent);
+  }
+}
+
+/**
+ * Generate position top, right, bottom, left classes by pixels
+ *
+ * pospx-t: position pixels top
+ * pospx-r: position pixels right
+ * pospx-b: position pixels bottom
+ * pospx-l: position pixels left
+ */
+@for $i from 1 through 250 {
+  .pospx-negative-t-#{$i} {
+    top: -#{$i}px;
+  }
+
+  .pospx-negative-r-#{$i} {
+    right: -#{$i}px;
+  }
+
+  .pospx-negative-b-#{$i} {
+    bottom: -#{$i}px;
+  }
+
+  .pospx-negative-l-#{$i} {
+    left: -#{$i}px;
+  }
+
+  .pospx-t-#{$i} {
+    top: #{$i}px;
+  }
+
+  .pospx-r-#{$i} {
+    right: #{$i}px;
+  }
+
+  .pospx-b-#{$i} {
+    bottom: #{$i}px;
+  }
+
+  .pospx-l-#{$i} {
+    left: #{$i}px;
+  }
+}
+
+/**
+ * Generate width and height classes by pixels
+ *
+ * w: width
+ * h: height
+ * wi: width important
+ * hi: height important
+ */
+//@for $i from 1 through 200 {
+@for $i from 1 through 512 {
+  //$pixels: $i * 5;
+  $pixels: $i * 1;
+
+  .w-#{$pixels} {
+    width: #{$pixels}px;
+  }
+
+  .h-#{$pixels} {
+    height: #{$pixels}px;
+  }
+
+  .wi-#{$pixels} {
+    width: #{$pixels}px !important;
+  }
+
+  .hi-#{$pixels} {
+    height: #{$pixels}px !important;
+  }
+}
+
+/**
+ * Generate width and height classes by percentage
+ *
+ * wp: width percent
+ * hp: height percent
+ */
+@for $i from 1 through 20 {
+  $percent: ($i * 5) / 100;
+  $percent-class: $percent * 100;
+
+  .wp-#{$percent-class} {
+    width: percentage($percent);
+  }
+
+  .hp-#{$percent-class} {
+    height: percentage($percent);
+  }
+}
+
+/**
+ * Generate width and height classes by square
+ *
+ * w: width
+ * h: height
+ */
+//$sizes: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512;
+//@each $size in $sizes {
+//  .w-#{$size} {
+//    width: #{$size}px;
+//  }
+//
+//  .h-#{$size} {
+//    height: #{$size}px;
+//  }
+//}
+
+/**
+ * Generate min/max width and min/max height classes by pixels
+ *
+ * minw: min-width
+ * minh: min-height
+ * maxw: max-width
+ * maxh: max-height
+ */
+//@for $i from 1 through 200 {
+@for $i from 1 through 512 {
+  //$pixels: $i * 5;
+  $pixels: $i * 1;
+
+  .minw-#{$pixels} {
+    min-width: #{$pixels}px;
+  }
+
+  .minh-#{$pixels} {
+    min-height: #{$pixels}px;
+  }
+
+  .maxw-#{$pixels} {
+    max-width: #{$pixels}px;
+  }
+
+  .maxh-#{$pixels} {
+    max-height: #{$pixels}px;
+  }
+}
+
+/**
+ * Generate font weight classes for the default and alt font families
+ *
+ * fwd: font weight default
+ * fwa: font weight alt
+ */
+$weights: (
+  default: ($font-weight-default-300, $font-weight-default-400, $font-weight-default-500, $font-weight-default-600, $font-weight-default-700),
+  alt: ($font-weight-alt-300, $font-weight-alt-400, $font-weight-alt-700),
+);
+@each $name, $weight in $weights {
+  @if $name == 'default' {
+    @each $w in $weight {
+      .fwd-#{$w} {
+        font-weight: $w;
+      }
+    }
+  }
+
+  @if $name == 'alt' {
+    @each $w in $weight {
+      .fwa-#{$w} {
+        font-weight: $w;
+      }
+    }
+  }
+}
+
+/**
+ * Creates classes for every image based on the images array that exists in _variables.scss
+ */
+@each $name, $image in $images {
+  .#{$name} {
+    background-image: url('#{$image}');
+  }
+
+  .#{$name}-filter::before {
+    background-image: url('#{$image}');
+  }
+}
+
+/**
+ * Creates letter spacing rules for every size that is provided
+ */
+$letter-spacings: (
+  size: ('mini': 1, 'small': 2, 'medium': 5, 'big': 8),
+);
+
+@each $size in map-get($letter-spacings, 'size') {
+  .letter-spacing-#{(nth($size, 1))} {
+    letter-spacing: #{(nth($size, 2))}px;
+  }
+}
+
+/**
+ * Creates custom letter spacings
+ */
+$letter-spacings: (
+  size: ('0': 0, '0004': .004, '001': .01, '002': .02, '003': .03, '006': .06),
+);
+
+@each $size in map-get($letter-spacings, 'size') {
+  .letter-spacing-#{(nth($size, 1))} {
+    letter-spacing: #{(nth($size, 2))}rem;
+  }
+
+  .letter-spacing-negative-#{(nth($size, 1))} {
+    letter-spacing: -#{(nth($size, 2))}rem;
+  }
+}
+
+/**
+ * Creates custom font signs
+ *
+ * fc: font custom
+ */
+$font-customs: (
+  content: ('plus': '\002B'),
+);
+
+.fc {
+  @include fontCustom;
+}
+
+@each $content in map-get($font-customs, 'content') {
+  .fc-#{(nth($content, 1))}::before {
+    content: '#{(nth($content, 2))}';
+  }
+}
+
+/**
+ * Creates box shadows based on the sizes that are given
+ */
+$box-shadows: (
+  size: (
+    'lighter': (
+      'offset-y': 0,
+      'offset-x': 1,
+      'blur-radius': 4,
+      'spread-radius': 0,
+      'color': $color-box-shadow-lighter,
+    ),
+    'light': (
+      'offset-y': 0,
+      'offset-x': 1,
+      'blur-radius': 4,
+      'spread-radius': 0,
+      'color': $color-box-shadow-light,
+    ),
+    '004': (
+      'offset-y': 0,
+      'offset-x': 1,
+      'blur-radius': 4,
+      'spread-radius': 0,
+      'color': $color-box-shadow-alpha-004,
+    ),
+  ),
+);
+
+@each $map in map-get($box-shadows, 'size') {
+  $size: nth($map, 1);
+  $offset-y: #{map-get(nth($map, 2), 'offset-y')};
+  $offset-x: #{map-get(nth($map, 2), 'offset-x')};
+  $blur-radius: #{map-get(nth($map, 2), 'blur-radius')};
+  $spread-radius: #{map-get(nth($map, 2), 'spread-radius')};
+  $color: #{map-get(nth($map, 2), 'color')};
+
+  .box-shadow-#{$size} {
+    @include boxShadow($offset-y, $offset-x, $blur-radius, $spread-radius, $color);
+  }
+}
+
+/**
+ * Creates a full border for every size and color that is provided
+ */
+$borders: (
+  size: ('mini': $border-size-mini, 'small': $border-size-small, 'medium': $border-size-medium, 'big': $border-size-big),
+  color: map-merge(map-merge(map-merge($colors-array-mains, $colors-array-whites), $colors-array-blacks), $colors-array-customs),
+);
+
+@each $size in map-get($borders, 'size') {
+  @each $color in map-get($borders, 'color') {
+    .border-#{(nth($size, 1))}-#{(nth($color, 1))} {
+      border: #{(nth($size, 2))}px solid #{(nth($color, 2))}
+    }
+  }
+}
+
+/**
+ * Creates a border for every orientation, size and color that is provided
+ */
+$borders: (
+  orientation: ('top', 'right', 'bottom', 'left'),
+  size: ('mini': $border-size-mini, 'small': $border-size-small, 'medium': $border-size-medium, 'big': $border-size-big),
+  color: map-merge(map-merge(map-merge($colors-array-mains, $colors-array-whites), $colors-array-blacks), $colors-array-customs),
+);
+
+@each $orientation in map-get($borders, 'orientation') {
+  @each $size in map-get($borders, 'size') {
+    @each $color in map-get($borders, 'color') {
+      .border-#{$orientation}-#{(nth($size, 1))}-#{(nth($color, 1))} {
+        border-#{$orientation}: #{(nth($size, 2))}px solid #{(nth($color, 2))}
+      }
+    }
+  }
+}
+
+/**
+ * clm: color main
+ * clmh: color main hover
+ *
+ * clmi: color main important
+ * clmhi: color main hover important
+ *
+ * clmb: color main border
+ * clmbh: color main border hover
+ *
+ * clmbi: color main border important
+ * clmbhi: color main border hover important
+ */
+$colors: (
+  ($color-main-red, $color-main-red-hover, 'red'),
+  ($color-main-yellow, $color-main-yellow-hover, 'yellow'),
+  ($color-main-grey, $color-main-grey-hover, 'grey'),
+  ($color-main-light-blue, $color-main-light-blue-hover, 'light-blue'),
+  ($color-main-blue, $color-main-blue-hover, 'blue'),
+);
+@each $color in $colors {
+  $important: '';
+  $important-class-extension: '';
+  @for $i from 1 through 2 {
+    @if $i == 2 {
+      $important: ' !important';
+      $important-class-extension: 'i';
+    }
+
+    .clm#{$important-class-extension}-#{(nth($color, 3))} {
+      color: #{(nth($color, 1))}#{$important};
+    }
+
+    .clmb#{$important-class-extension}-#{(nth($color, 3))} {
+      border-color: #{(nth($color, 1))}#{$important};
+    }
+
+    a.clm#{$important-class-extension}-#{(nth($color, 3))}, .clmh#{$important-class-extension}-#{(nth($color, 3))} {
+      &:hover,
+      &:focus,
+      &:active {
+        color: #{(nth($color, 2))}#{$important};
+      }
+    }
+
+    a.clmb#{$important-class-extension}-#{(nth($color, 3))}, .clmbh#{$important-class-extension}-#{(nth($color, 3))} {
+      &:hover,
+      &:focus,
+      &:active {
+        i {
+          color: #{(nth($color, 2))}#{$important};
+        }
+
+        border-color: #{(nth($color, 2))}#{$important};
+      }
+    }
+  }
+}
+
+/**
+ * clf: color font
+ * clfh: color font hover
+ * clfa: color font active
+ * clfmh: color font more (opacity) hover
+ * clfdph: color font dynamic positive (opacity) hover
+ * clfdnh: color font dynamic negative (opacity) hover
+ *
+ * clfi: color font important
+ * clfhi: color font hover important
+ * clfai: color font active important
+ * clfmhi: color font more (opacity) hover important
+ * clfdph: color font dynamic positive (opacity) hover important
+ * clfdnh: color font dynamic negative (opacity) hover important
+ */
+$colors: (
+  $colors-array-mains,
+  $colors-array-fonts,
+  $colors-array-whites,
+  $colors-array-blacks,
+  $colors-array-customs,
+);
+@each $colorArray in $colors {
+  @each $color in $colorArray {
+    $important: '';
+    $important-class-extension: '';
+    @for $i from 1 through 2 {
+      @if $i == 2 {
+        $important: ' !important';
+        $important-class-extension: 'i';
+      }
+
+      .clf#{$important-class-extension}-#{(nth($color, 1))}, .clfa#{$important-class-extension}-#{(nth($color, 1))} {
+        color: #{(nth($color, 2))}#{$important};
+      }
+
+      .clfh#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+
+          color: rgba($red, $green, $blue, .9)#{$important};
+        }
+      }
+
+      .clfmh#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+
+          color: rgba($red, $green, $blue, .6)#{$important};
+        }
+      }
+
+      .clfdph#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+          $opacity: opacity(nth($color, 2));
+
+          $opacity-positive: $opacity;
+          @if $opacity <= 0.9 {
+            $opacity-positive: $opacity + 0.1;
+          } @else {
+            $opacity-positive: 0;
+          }
+
+          color: rgba($red, $green, $blue, $opacity-positive)#{$important};
+        }
+      }
+
+      .clfdnh#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+          $opacity: opacity(nth($color, 2));
+
+          $opacity-negative: $opacity;
+          @if $opacity >= 0.1 {
+            $opacity-negative: $opacity - 0.1;
+          } @else {
+            $opacity-negative: 0;
+          }
+
+          color: rgba($red, $green, $blue, $opacity-negative)#{$important};
+        }
+      }
+
+      .clfdsh#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+          $opacity: opacity(nth($color, 2));
+
+          color: rgba($red, $green, $blue, $opacity)#{$important};
+        }
+      }
+    }
+  }
+}
+
+/**
+ * clb: color border
+ * clbh: color border hover
+ * clba: color border active
+ *
+ * clbi: color border important
+ * clbhi: color border hover important
+ * clbai: color border active important
+ *
+ * clbf: color border focus
+ * clbfi: color border focus important
+ */
+$colors: (
+  $colors-array-mains,
+  $colors-array-whites,
+  $colors-array-blacks,
+  $colors-array-customs,
+);
+@each $colorArray in $colors {
+  @each $color in $colorArray {
+    $important: '';
+    $important-class-extension: '';
+    @for $i from 1 through 2 {
+      @if $i == 2 {
+        $important: ' !important';
+        $important-class-extension: 'i';
+      }
+
+      .clb#{$important-class-extension}-#{(nth($color, 1))}, .clba#{$important-class-extension}-#{(nth($color, 1))} {
+        border-color: #{(nth($color, 2))}#{$important};
+      }
+
+      .clbh#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+
+          border-color: rgba($red, $green, $blue, .9)#{$important};
+        }
+      }
+
+      .clbf#{$important-class-extension}-#{(nth($color, 1))} {
+        &:focus {
+          border-color: #{(nth($color, 2))}#{$important};
+        }
+      }
+    }
+  }
+}
+
+/**
+ * clbg: color background
+ * clbgh: color background hover (static opacity .9)
+ * clbga: color background active
+ * clbgdsh: color background hover (dynamic opacity)
+ *
+ * clbgi: color background important
+ * clbghi: color background hover important (static opacity .9)
+ * clbgai: color background active important
+ * clbgdshi: color background hover important (dynamic opacity)
+ */
+$colors: (
+  $colors-array-mains,
+  $colors-array-whites,
+  $colors-array-blacks,
+  $colors-array-customs,
+);
+@each $colorArray in $colors {
+  @each $color in $colorArray {
+    $important: '';
+    $important-class-extension: '';
+    @for $i from 1 through 2 {
+      @if $i == 2 {
+        $important: ' !important';
+        $important-class-extension: 'i';
+      }
+
+      .clbg#{$important-class-extension}-#{(nth($color, 1))}, .clbga#{$important-class-extension}-#{(nth($color, 1))} {
+        background-color: #{(nth($color, 2))}#{$important};
+      }
+
+      .clbgh#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+
+          background-color: rgba($red, $green, $blue, .9)#{$important};
+        }
+      }
+
+      .clbgdsh#{$important-class-extension}-#{(nth($color, 1))} {
+        &:hover,
+        &:focus,
+        &:active {
+          $red: red(nth($color, 2));
+          $green: green(nth($color, 2));
+          $blue: blue(nth($color, 2));
+          $opacity: opacity(nth($color, 2));
+
+          background-color: rgba($red, $green, $blue, $opacity)#{$important};
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Creates flex
+ */
+@for $i from 1 through 2 {
+  $number: $i - 1;
+
+  .flex-#{$number} {
+    @include flex($number);
+  }
+}
+
+/**
+ * Creates line heights
+ */
+@for $i from 1 through 10 {
+  $key: $i - 1;
+
+  .lh-1-#{$key} {
+    line-height: 1#{'.'}#{$key};
+  }
+
+  .lh-2-#{$key} {
+    line-height: 1#{'.'}#{$key};
+  }
+}
+
+.lh-3-0 {
+  line-height: 3;
+}
+
+/**
+ * Creates transitions
+ */
+$transitions: (
+  property: $transition-properties,
+  duration: $transition-durations,
+  timing-function: $transition-timing-functions,
+  delay: $transition-delays,
+);
+
+@each $property in map-get($transitions, 'property') {
+  @each $duration in map-get($transitions, 'duration') {
+    @each $timing-function in map-get($transitions, 'timing-function') {
+      @each $delay in map-get($transitions, 'delay') {
+        .transition-#{$property}-#{(nth($duration, 1))}-#{$timing-function}-#{(nth($delay, 1))} {
+          @include transition-custom($property, #{(nth($duration, 2))}, $timing-function, #{(nth($delay, 2))});
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Creates cursor
+ */
+$cursors: (
+  property: $cursor-properties,
+);
+
+@each $property in map-get($cursors, 'property') {
+  .cursor-#{$property} {
+    cursor: #{$property};
+  }
+}

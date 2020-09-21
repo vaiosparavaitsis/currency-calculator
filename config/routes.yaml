@@ -1,3 +1,33 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+##########
+# App
+##########
+
+# Homepage
+app_homepage_index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+# Crud
+app_add_index:
+    path: /add
+    controller: App\Controller\CrudController::add
+
+app_update_index:
+    path: /update
+    controller: App\Controller\CrudController::updateList
+
+app_update_show:
+    path: /update/{id}
+    controller: App\Controller\CrudController::update
+
+app_delete_index:
+    path: /delete
+    controller: App\Controller\CrudController::deleteList
+
+app_delete_delete:
+    path: /delete/{id}
+    controller: App\Controller\CrudController::delete
+
+##########
+# Api
+##########

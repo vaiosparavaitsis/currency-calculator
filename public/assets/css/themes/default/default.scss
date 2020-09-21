@@ -1,0 +1,452 @@
+/**
+ * This is the default theme for the project
+ */
+
+// Reset
+html {
+  touch-action: manipulation;
+  height: 100%;
+}
+
+body {
+  font-family: $font-family-montserrat;
+  font-size: $font-size-default;
+  line-height: $line-height-default;
+  color: $color-font-default;
+  background-color: transparent;
+  letter-spacing: $letter-spacing-default;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  min-height: 100%;
+
+  //height: 3000px !important; // TODO: Remove
+}
+
+a {
+  color: $color-font-default;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-font-default;
+    text-decoration: none !important;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-merriweather;
+  letter-spacing: $letter-spacing-alt;
+}
+
+// Hacks
+// Needs to be set in a container or a container-fluid
+// Creates a margin to top and bottom of consecutive rows
+.container.row-vertical-spacer {
+  .row:not(:first-child):not(:last-child) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+// Needs to be set in a row
+// Creates a margin to top and bottom of consecutive columns that are col-12
+.row.column-vertical-spacer-small-12 {
+  .col-12:not(:first-child) {
+    margin-top: 15px;
+  }
+
+  .col-12:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.row.column-vertical-spacer-medium-12 {
+  .col-12:not(:first-child) {
+    margin-top: 25px;
+  }
+
+  .col-12:not(:last-child) {
+    margin-bottom: 25px;
+  }
+}
+
+// Needs to be set in a row
+// Creates a margin to top and bottom of consecutive columns that are col-3
+.row.column-vertical-spacer-3 {
+  .col-3:not(:first-child):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
+    margin-top: 15px;
+  }
+
+  .col-3:not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)):not(:nth-last-child(4)) {
+    margin-bottom: 15px;
+  }
+}
+
+// List spacer
+ul.list-spacer {
+  li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+// Paragraph spacer
+.paragraph-spacer-medium {
+  & > p:not(:first-child) {
+    margin-top: 40px;
+  }
+
+  & > p:not(:last-child) {
+    margin-bottom: 40px;
+  }
+}
+
+// Align items normal
+.align-items-normal {
+  -ms-flex-align: inherit !important;
+  align-items: normal !important;
+}
+
+.container-720 {
+  @media (min-width: $min-width-xl) {
+    max-width: $max-width-md;
+  }
+
+  @media (min-width: $min-width-lg) {
+    max-width: $max-width-md;
+  }
+}
+
+// Caret remove for dropdown links only
+a.dropdown-toggle.no-caret::after {
+  display: none;
+}
+
+// Removes padding from the div element and adds it to the anchor
+.dropdown .dropdown-menu {
+  padding: 0;
+
+  & > a {
+    padding-top: $size-rem-12;
+    padding-bottom: $size-rem-12;
+    color: $color-font-default;
+  }
+
+  & > a.dropdown-item {
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color-font-default;
+      background-color: $color-custom-grey-1 !important;
+    }
+  }
+}
+
+.dropdown .dropdown-menu {
+  &.dropdown-menu-box-shadow {
+    @include boxShadowMultiple('0 1px 2px ' + $color-black-lighter-2 + ', 0 0 1px ' + $color-blacker-darkest-7);
+  }
+}
+
+// Validation - Errors
+.has-error-fc {
+  color: $color-bs-danger !important;
+}
+
+.has-error-bbc {
+  border-bottom-color: $color-bs-danger !important;
+}
+
+.has-error-message {
+  display: block !important;
+  padding: 6px 12px !important;
+  color: $color-bs-danger !important;
+  font-size: 12px !important;
+}
+
+// Custom elements
+.d-grid {
+  display: grid !important;
+}
+
+.d-webkit-box {
+  display: -webkit-box !important;
+}
+
+.of-hidden {
+  overflow: hidden !important;
+}
+
+.lh-alt {
+  line-height: $line-height-alt !important;
+}
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+.outline-focus-none:focus {
+  outline: none;
+}
+
+.box-shadow-focus-none:focus {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.min-h-auto {
+  min-height: auto;
+}
+
+.hvh-100 {
+  height: $size-vh-100;
+}
+
+.center-horizontal-and-vertical {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $size-vh-100;
+}
+
+.center-horizontal-absolute {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.no-gutters-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.border-none {
+  border: none;
+}
+
+.border-bottom-overlap {
+  border-bottom: #{$border-size-mini}px solid $color-blackest-neutral-4;
+  padding-bottom: #{$size-rem-value-8 + .1}rem;
+}
+
+.img-responsive {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    filter: grayscale(30%) contrast(130%) brightness(95%);
+  }
+}
+
+.img-tag-responsive {
+  position: relative;
+  padding-top: $aspect-ratio-16-9;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.form-field-text-error {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: $size-rem-12;
+
+    li {
+      margin-top: $size-rem-8;
+    }
+  }
+}
+
+.form-field-border-error {
+  input {
+    border-color: $color-bs-danger;
+
+    &:focus {
+      border-color: $color-bs-danger;
+    }
+  }
+}
+
+.ajax-spinner {
+  text-align: center;
+}
+
+.popover-arrow-fix {
+  border: none;
+
+  position: absolute;
+  //top: 1px;
+  //left: 50%;
+  margin-left: -7px;
+  clip: rect(0 18px 14px -4px);
+
+  &:after {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: $color-whitest-lightest-1;
+
+    @include transform('rotate(45deg) translate(6px, 6px)');
+    @include boxShadow(-1, -1, 1, -1, $color-box-shadow-alt);
+  }
+}
+
+.list-item-separator {
+  border-top: 1px solid $color-black-darker-6;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.ellipsis {
+  @include ellipsis;
+}
+
+.ellipsis-with-nowrap {
+  @include noWrapWithEllipsis;
+}
+
+.ellipsis-add-one-line {
+  -webkit-line-clamp: 1;
+}
+
+.ellipsis-add-two-lines {
+  -webkit-line-clamp: 2;
+}
+
+.ellipsis-add-three-lines {
+  -webkit-line-clamp: 3;
+}
+
+.align-content-bottom {
+  @include alignContentBottom;
+}
+
+.box-orient-vertical {
+  -webkit-box-orient: vertical !important;
+}
+
+.text-decoration-underline-hover {
+  @include textDecoration('underline', 'hover');
+}
+
+.spacer-top {
+  margin-top: 15px;
+}
+
+.border-bottom-small-black-expand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $size-rem-24;
+  border-bottom: 1px solid $color-black-neutral-4;
+
+  & > h1, h2, h3, h4, h5, h6 {
+    margin-bottom: -1px;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid $color-blackest-light-3;
+  }
+}
+
+.dotSeparator {
+  margin-right: 3px;
+  margin-left: 3px;
+  padding-right: .3em;
+  padding-left: .3em;
+
+  &::after {
+    content: '\00B7';
+  }
+}
+
+.clear-both {
+  clear: both;
+}
+
+input.form-field-text-line-style,
+select.form-field-select-line-style {
+  border-top: none;
+  border-right: none;
+  border-bottom: #{$border-size-mini}px solid $color-black-neutral-4;
+  border-left: none;
+
+  @include borderRadius(0);
+
+  &:focus {
+    border-color: $color-main-blue;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    @include boxShadowMultiple('none');
+  }
+}
+
+label.form-field-file-line-style {
+  border-top: none;
+  border-right: none;
+  border-bottom: #{$border-size-mini}px solid $color-black-neutral-4;
+  border-left: none;
+  color: $color-blacker-neutral-4;
+
+  @include borderRadius(0);
+
+  &:after {
+    top: 1px;
+    background-color: $color-black-darker-6;
+
+    @include borderRadius(0);
+  }
+}
+
+.sidebar-sticky-social-info {
+  @include sidebarStickySocialInfo();
+}
+
+.text-justify {
+  @include textJustify;
+}
+
+// Hover effects
+@include hoverEffect;
+.hover-effect-rotate-360 {
+  @include hoverEffectRotate(360);
+}
+
+// Hover effects - images
+@include hoverEffectImg;
+.hover-effect-img-reflection {
+  @include hoverEffectImgReflection;
+}
+
+/**
+ * Home
+ */
+

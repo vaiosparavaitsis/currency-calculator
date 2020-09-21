@@ -1,0 +1,22 @@
+/**
+ * This is the default layout structure of the project
+ */
+
+// Variables
+@import '../../scss/helpers/variables';
+
+/**
+ * Color themes
+ *
+ * Usage:
+ * $theme-colors: (
+ *   'key': 'value',
+ *   'key': rgba(0, 0, 0, 1),
+ *   'key': $variable
+ * );
+ */
+$theme-colors: ();
+
+// Other
+@import '../../scss/app';
+@import '../../themes/default/default';

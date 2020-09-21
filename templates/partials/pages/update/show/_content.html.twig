@@ -1,0 +1,33 @@
+<div id="content-update-show-wrapper" class="container mt-5 mb-5">
+  <div class="row justify-content-md-center">
+    <div id="content-update-show" class="col-6">
+      <div class="heading-title border-bottom-small-black-expand">
+        <h3 class="fs-14 fwa-700 text-uppercase">Update | {{ id }}</h3>
+      </div>
+
+      {{ form_start(form, { 'attr': { 'class': 'currency-calculator-form-update' } }) }}
+
+      {% set currencyFromError = form_errors(form.currency_from) %}
+      {% set currencyToError = form_errors(form.currency_to) %}
+      {% set ratioError = form_errors(form.ratio) %}
+
+      <div class="form-group mb-2{% if currencyFromError is not empty %} form-field-border-error{% endif %}">
+        {{ form_widget(form.currency_from) }}
+        {% if currencyFromError is not empty %}<span class="text-danger form-field-text-error">{{ currencyFromError|raw }}</span>{% endif %}
+      </div>
+
+      <div class="form-group mb-2{% if currencyToError is not empty %} form-field-border-error{% endif %}">
+        {{ form_widget(form.currency_to) }}
+        {% if currencyToError is not empty %}<span class="text-danger form-field-text-error">{{ currencyToError|raw }}</span>{% endif %}
+      </div>
+
+      <div class="form-group mb-2{% if ratioError is not empty %} form-field-border-error{% endif %}">
+        {{ form_widget(form.ratio) }}
+        {% if ratioError is not empty %}<span class="text-danger form-field-text-error">{{ ratioError|raw }}</span>{% endif %}
+      </div>
+
+      <button type="submit" class="security-form-register-submit btn clbg-blue clbgh-blue wp-100 fs-14 fwd-700 clf-whitest-lightest-1 clfh-whitest-lightest-1 py-1">Update</button>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div id="header" class="container">
+  <div class="row top-header align-items-center pt-2 pb-2">
+    <div class="col">
+      <div class="logo fs-32"><a href="/">{{ parameters.project_name }}</a></div>
+    </div>
+  </div>
+
+  <div class="row bottom-header">
+    <div class="col">
+      <div class="links">
+        <ul class="list-unstyled list-inline list-inline-items-space-16 mb-0">
+          <li class="list-inline-item"><a href="{{ path('app_homepage_index') }}" class="clf-alt {{ app.request.get('_route') == 'app_homepage_index' ? 'clfai-default' }}">Convert</a>
+          </li><li class="list-inline-item"><a href="{{ path('app_add_index') }}" class="clf-alt {{ app.request.get('_route') == 'app_add_index' ? 'clfai-default' }}">Add</a>
+          </li><li class="list-inline-item"><a href="{{ path('app_update_index') }}" class="clf-alt {{ app.request.get('_route') == 'app_update_index' ? 'clfai-default' }}">Update</a>
+          </li><li class="list-inline-item"><a href="{{ path('app_delete_index') }}" class="clf-alt {{ app.request.get('_route') == 'app_delete_index' ? 'clfai-default' }}">Delete</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div id="content-update-list-wrapper" class="container mt-5 mb-5">
+  <div class="row justify-content-md-center">
+    <div id="content-update-list" class="col-6">
+      <div class="currencies-list">
+        <div class="heading-title border-bottom-small-black-expand">
+          <h3 class="fs-14 fwa-700 text-uppercase">Update a currency</h3>
+        </div>
+
+        <ul class="list-unstyled list-spacer fs-0 fwd-500">
+          {% for currency in currencies %}
+            <li class="fs-12">
+              <a href="{{ path('app_update_show', {'id': currency.id}) }}" class="text-decoration-underline-hover">{{ currency.getFullName }} | {{ currency.ratio }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
